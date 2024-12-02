@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale:1.0" />
+    <title>2048</title>
+    <link rel="stylesheet" href="fruitmania.css" />
+  </head>
+
+  <body>
+    <!-- <div id="menu_container">
+            
+            <button id="home_btn">
+                <img src="./img/icon-home.png" class="home_icon">
+            </button>
+            
+        </div> -->
+    <div class="main-container" id="main-container">
+      <!-- <h1 id="title-2048">2048</h1> -->
+      <!-- <hr /> -->
+      <h2 style="display: none" id="display-score">
+        Score: <span id="score">0</span>
+      </h2>
+
+      <div id="game-over-popup" style="display: none; z-index: 10">
+        <h2>Game Over</h2>
+        <p>Your score is <span id="score-gameover">0</span></p>
+        <button id="restart-game-btn">Restart Game</button>
+      </div>
+
+      <div id="board"></div>
+      <div class="main-menu">
+        <button id="start-game-btn">Start Game</button>
+        <button id="home_btn">Back to home</button>
+        <button id="exit-game-btn" style="display: none; margin-top: 20px">
+          Exit Game
+        </button>
+      </div>
+      <!-- <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 30px;
+        "
+      >
+        
+      </div> -->
+    </div>
+    <script src="fruitmania.js"></script>
+  </body>
+</html>
