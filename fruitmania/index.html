@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale:1.0" />
-    <title>2048</title>
+    <title>Fruit Juicy Mania</title>
     <link rel="stylesheet" href="fruitmania.css" />
   </head>
 
@@ -18,24 +18,33 @@
     <div class="main-container" id="main-container">
       <!-- <h1 id="title-2048">2048</h1> -->
       <!-- <hr /> -->
-      <h2 style="display: none" id="display-score">
-        Score: <span id="score">0</span>
-      </h2>
 
+      <div style="display: none" id="display-score">
+        <p><span id="score">0</span></p>
+      </div>
+      <div
+        style="
+          position: absolute;
+          right: 0;
+          margin-top: 12px;
+          margin-right: 12px;
+        "
+      >
+        <button id="exit-game-btn" style="display: none">Exit Game</button>
+      </div>
       <div id="game-over-popup" style="display: none; z-index: 10">
-        <h2>Game Over</h2>
+        <h1>Game Over</h1>
         <p>Your score is <span id="score-gameover">0</span></p>
         <button id="restart-game-btn">Restart Game</button>
       </div>
 
-      <div id="board"></div>
       <div class="main-menu">
-        <button id="start-game-btn" >Start Game</button>
-        <button id="home_btn" onclick="window.location.href='https://parseitlearninghub.github.io/parsers/'" >Back to home</button>
-        <button id="exit-game-btn" style="display: none; margin-top: 20px">
-          Exit Game
-        </button>
+        <button id="start-game-btn">Start Game</button>
+        <button id="home_btn">Back to home</button>
       </div>
+
+      <div id="board"></div>
+
       <!-- <div
         style="
           display: flex;
