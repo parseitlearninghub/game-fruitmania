@@ -22,12 +22,14 @@ function startGame() {
   document.getElementById("display-score").style.display = "block";
   document.getElementById("main-container").style.backgroundImage =
     "url('./img/bgstart.jfif')";
-  // document.getElementById("title-2048").style.paddingTop = "0vh";
 
   // Initialize the game
   score = 0;
   document.getElementById("score").innerText = score;
   document.getElementById("home_btn").style.display = "none";
+  document.getElementById("leaderboard").style.display = "none";
+  highscore.style.display = "none";
+  bclick = 1;
   setGame();
 }
 function exitGame() {
@@ -37,16 +39,15 @@ function exitGame() {
   document.getElementById("game-over-popup").style.display = "none";
   document.getElementById("exit-game-btn").style.display = "none";
   document.getElementById("display-score").style.display = "none";
-  // document.getElementById("title-2048").style.paddingTop = "6vh";
   document.getElementById("home_btn").style.display = "flex";
   document.getElementById("main-container").style.backgroundImage =
     "url('./img/bg4.jfif')";
+  document.getElementById("leaderboard").style.display = "block";
 }
 
 function restartGame() {
   // Hide the popup and show the start button
   document.getElementById("game-over-popup").style.display = "none";
-  // document.getElementById("title-2048").style.paddingTop = "0vh";
   score = 0;
   document.getElementById("score").innerText = score;
   setGame();
@@ -77,11 +78,12 @@ function setGame() {
 }
 
 function checkGameOver() {
-  // console.log("Checking game over...");
-  // console.log("Has empty tile? ", hasEmptyTile());
-  // console.log("Can merge? ", canMerge());
   if (!hasEmptyTile() && !canMerge()) {
     document.getElementById("game-over-popup").style.display = "block";
+    console.log("Game Over");
+    console.log("Score: ", score);
+    //datebase
+    this.localStorage.setItem("score", score);
   }
 }
 function canMerge() {
@@ -116,7 +118,6 @@ document.addEventListener("keyup", (e) => {
     slideLeft();
     let randomNumber = Math.random() < 0.2 ? 4 : 2;
     setNumber(randomNumber);
-    console.log(randomNumber);
   } else if (e.code == "ArrowRight") {
     slideRight();
     let randomNumber = Math.random() < 0.2 ? 4 : 2;
@@ -162,7 +163,7 @@ document.addEventListener("touchend", (e) => {
       // Swipe Left
       slideLeft();
     }
-  } else if (Math.abs(diffY) > SWIPE_THRESHOLD){
+  } else if (Math.abs(diffY) > SWIPE_THRESHOLD) {
     // Vertical swipe (up or down)
     if (diffY > 0) {
       // Swipe Down
@@ -174,7 +175,7 @@ document.addEventListener("touchend", (e) => {
   }
   if (Math.abs(diffX) < SWIPE_THRESHOLD && Math.abs(diffY) < SWIPE_THRESHOLD) {
     return;
-}
+  }
   // After swipe, add a new tile
   let randomNumber = Math.random() < 0.2 ? 4 : 2;
   setNumber(randomNumber);
@@ -311,4 +312,17 @@ function hasEmptyTile() {
     }
   }
   return false;
+}
+
+//leaderboard
+const highscore = document.querySelector(".highscore-container");
+let bclick = 1;
+function viewLeaderboard() {
+  if (bclick == 1) {
+    highscore.style.display = "flex";
+    bclick = 2;
+  } else if (bclick == 2) {
+    highscore.style.display = "none";
+    bclick = 1;
+  }
 }

@@ -8,17 +8,7 @@
   </head>
 
   <body>
-    <!-- <div id="menu_container">
-            
-            <button id="home_btn">
-                <img src="./img/icon-home.png" class="home_icon">
-            </button>
-            
-        </div> -->
     <div class="main-container" id="main-container">
-      <!-- <h1 id="title-2048">2048</h1> -->
-      <!-- <hr /> -->
-
       <div style="display: none" id="display-score">
         <p><span id="score">0</span></p>
       </div>
@@ -41,26 +31,48 @@
       <div class="main-menu">
         <button id="start-game-btn">Start Game</button>
         <button
-        id="home_btn"
-        onclick="window.location.href='https://parseitlearninghub.github.io/parsers/'"
+          id="home_btn"
+          onclick="window.location.href='https://parseitlearninghub.github.io/parsers/'"
+        >
+          Back to Home
+        </button>
+
+        <button id="leaderboard" onclick="viewLeaderboard()">
+          Leaderboard
+        </button>
+      </div>
+      <div
+        style="
+          height: 100vh;
+          width: 100vw;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          flex-direction: column;
+        "
       >
-        Back to Home
-      </button>
+        <div class="highscore-container" id="highscore-container">
+          <div class="highscore-title">Highscore</div>
+          <div class="highscore-item">
+            <div class="highscore-rank">Rank</div>
+            <div class="highscore-score">Score</div>
+            <div class="highscore-name" style="font-size: 20px">Name</div>
+          </div>
+          <div class="highscore-content" id="highscore-content">
+            <div class="highscore-item">
+              <div class="highscore-rank">
+                <img src="./img/icon/Champion1.png" class="imgTitle" />
+              </div>
+              <div class="highscore-score">1000</div>
+              <div class="highscore-name">John</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div id="board"></div>
-
-      <!-- <div
-        style="
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 30px;
-        "
-      >
-        
-      </div> -->
     </div>
     <script src="fruitmania.js"></script>
+    <script type="module" src="database.js"></script>
   </body>
 </html>

@@ -1,404 +1,312 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    /* height: 100vh; */
-    /* background-color: blue; */
-  }
-  
-  hr {
-    width: 90%;
-  }
-  
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  width: 90%;
+}
+
+#board {
+  width: 80vw; /* Board width set to 80% of viewport width */
+  height: 80vw;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 4px solid #f4e0af;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-radius: 1px;
+  position: absolute;
+  top: 22%;
+}
+
+.tile {
+  width: 25%; /* Tiles will take up 25% of the board's width */
+  height: 25%; /* Tiles will take up 25% of the board's height */
+  border: 4px solid rgba(244, 224, 175, 0.8);
+  font-size: 5vw; /* Font size of the number based on viewport width */
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 3px;
+
+  box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.2),
+    /* Inner shadow for depth */ inset -4px -4px 10px rgba(255, 255, 255, 0.3),
+    /* Highlight for 3D effect */ 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+/* colored tiles */
+.x2,
+.x4,
+.x8,
+.x16,
+.x32,
+.x64,
+.x128,
+.x256,
+.x512,
+.x1024,
+.x2048,
+.x4096,
+.x8192 {
+  color: transparent;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.x2 {
+  background-image: url("./img/img-fruit1/watermelon.png");
+}
+
+.x4 {
+  background-image: url("./img/img-fruit1/lemon.png");
+}
+
+.x8 {
+  background-image: url("./img/img-fruit1/guava.png");
+}
+
+.x16 {
+  background-image: url("./img/img-fruit1/avocado.png");
+}
+
+.x32 {
+  background-image: url("./img/img-fruit1/kiwi.png");
+}
+
+.x64 {
+  background-image: url("./img/img-fruit1/dragonfruit.png");
+}
+
+.x128 {
+  background-image: url("./img/img-fruit1/prutas.png");
+}
+
+.x256 {
+  background-image: url("./img/img-fruit1/papaya.png");
+}
+
+.x512 {
+  background-image: url("./img/img-fruit1/prutas2.png");
+}
+
+.x1024 {
+  background-image: url("./img/img-fruit1/apple.png");
+}
+.x2048 {
+  background-image: url("./img/img-fruit1/fruitas2.png");
+}
+
+.x4096 {
+  background-image: url("./img/img-fruit1/fruitas1.png");
+}
+
+.x8192 {
+  background-image: url("./img/img-fruit1/fruitas3.png");
+}
+
+/* Popup styles */
+#game-over-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 2px solid #bbada0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 50%;
+}
+#start-game-btn {
+  margin-top: 22vh;
+}
+#start-game-btn,
+#restart-game-btn,
+#exit-game-btn {
+  padding: 10px 20px;
+  background-color: #f4c531;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-game-btn:hover,
+#restart-game-btn:hover,
+#exit-game-btn:hover {
+  background-color: #e5b82a;
+}
+
+#start-game-btn,
+#restart-game-btn,
+#exit-game-btn {
+  width: 100%;
+}
+
+#menu_container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 55px;
+  background-color: transparent;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-bottom: 9px;
+  box-shadow: 0px 0px 2px 0px lightgray;
+}
+#home_btn {
+  padding: 10px 20px;
+  background-color: #2a3335;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 100%;
+  justify-content: center;
+}
+.home_icon {
+  width: 38px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.main-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 45%;
+  background-color: transparent;
+  position: absolute;
+  top: 8%;
+}
+.main-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("./img/bg5.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #e5b82a;
+}
+#display-score {
+  margin-top: 22%;
+  font-weight: 700;
+  font-size: 30px;
+  color: white;
+  -webkit-text-stroke: 0.7px #1b1833;
+}
+@media (max-width: 600px) {
   #board {
-    /* width: 400px; */
-    /* height: 400px; */
-    width: 80vw; /* Board width set to 80% of viewport width */
-    height: 80vw;
-  
-    /* background-color: #cdc1b5; */
-    background-color: rgba(0, 0, 0, 0.3);
-    /* #bbada0 */
-    border: 4px solid #f4e0af;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-  
-    margin: 0 auto;
-    /* position: relative; */
-    box-sizing: border-box;
-  
-    border-radius: 1px;
-    position: absolute;
-    top: 22%;
-    /* overflow: hidden; */
+    width: 90vw; /* Increase board size on smaller screens */
+    height: 90vw; /* Keep square aspect ratio */
   }
-  
+
   .tile {
-    /* width: 90px;
-      height: 90px;
-      border: 5px solid #bbada0;
-  
-      font-size: 40px;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center; */
-    width: 25%; /* Tiles will take up 25% of the board's width */
-    height: 25%; /* Tiles will take up 25% of the board's height */
-    /* border: 5px solid #bbada0; */
-    /* border: 5px solid #F4E0AF; */
-    border: 4px solid rgba(244, 224, 175, 0.8);
-    font-size: 5vw; /* Font size of the number based on viewport width */
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    border-radius: 3px;
-  
-    box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.2),
-      /* Inner shadow for depth */ inset -4px -4px 10px rgba(255, 255, 255, 0.3),
-      /* Highlight for 3D effect */ 0 4px 6px rgba(0, 0, 0, 0.15);
+    width: 25%; /* Increase tile size */
+    height: 25%; /* Increase tile height */
+    font-size: 8vw; /* Adjust font size for smaller screens */
   }
-  /* colored tiles */
-  
-  .x2 {
-    /* background-color: #eee4da; */
-    /* color: #727371; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/watermelon.png");
-    object-fit: cover;
-    /* aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x4 {
-    /* background-color: #ece0ca;
-      color: #727371; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/lemon.png");
-    /* object-fit: cover; */
-    /* aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x8 {
-    /* background-color: #f4b17a;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/guava.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x16 {
-    /* background-color: #f59575;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/avocado.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x32 {
-    /* background-color: #f57c5f;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/kiwi.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x64 {
-    /* background-color: #f65d3b;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/dragonfruit.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x128 {
-    /* background-color: #edce71;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/prutas.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x256 {
-    /* background-color: #edcc63;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/papaya.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x512 {
-    /* background-color: #edc651;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/prutas2.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x1024 {
-    /* background-color: #eec744;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/apple.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x2048 {
-    /* background-color: #ecc230;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/fruitas2.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x4096 {
-    /* background-color: #fe3d3d;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/fruitas1.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  .x8192 {
-    /* background-color: #ff2020;
-      color: white; */
-    color: transparent;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("./img/img-fruit1/fruitas3.png");
-    /* object-fit: cover;
-      aspect-ratio: 1/1; */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-  
-  /* Popup styles */
-  #game-over-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 2px solid #bbada0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 50%;
-  }
-  #start-game-btn {
-    margin-top: 22vh;
-  }
-  #start-game-btn,
-  #restart-game-btn,
-  #exit-game-btn {
-    padding: 10px 20px;
-    background-color: #f4c531;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #start-game-btn:hover,
-  #restart-game-btn:hover,
-  #exit-game-btn:hover {
-    background-color: #e5b82a;
-  }
-  
-  #start-game-btn,
-  #restart-game-btn,
-  #exit-game-btn {
-    width: 100%;
-  }
-  
-  #menu_container {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 55px;
-    background-color: transparent;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    margin-bottom: 9px;
-    box-shadow: 0px 0px 2px 0px lightgray;
-  }
-  #home_btn {
-    padding: 10px 20px;
-    background-color: #2a3335;
-    border: none;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 20px;
-    width: 100%;
-    /* display: flex; */
-    justify-content: center;
-    /* text-align: center; */
-  }
-  .home_icon {
-    width: 38px;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-  }
-  .main-menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    width: 45%;
-    background-color: transparent;
-    /* margin-top: 70px; */
-    position: absolute;
-    top: 8%;
-  }
-  .main-container {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    background-image: url("./img/bg5.jpg");
-    /* object-fit: cover; */
-    /* aspect-ratio: 16/9; */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #e5b82a;
-  }
-  #display-score {
-    /* display: flex;
-      justify-content: center;
-      align-items: center; */
-    /* position: absolute;
-      left: 0; */
-    margin-top: 22%;
-    /* margin-left: 12px; */
-    font-weight: 700;
-    font-size: 30px;
-    color: white;
-    -webkit-text-stroke: 0.7px #1b1833;
-    /* background-color: red; */
-  }
-  @media (max-width: 600px) {
-    #board {
-      width: 90vw; /* Increase board size on smaller screens */
-      height: 90vw; /* Keep square aspect ratio */
-    }
-  
-    .tile {
-      width: 25%; /* Increase tile size */
-      height: 25%; /* Increase tile height */
-      font-size: 8vw; /* Adjust font size for smaller screens */
-    }
-  }
-  
+}
+
+.highscore-container {
+  width: 91%;
+  background-color: #b1c29e;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 5px solid #d0e8c5;
+}
+.highscore-title {
+  font-size: 1.5rem;
+  width: 100%;
+  background-color: #c0c78c;
+  text-align: center;
+  color: #fff8c9;
+}
+.highscore-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.highscore-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 3px;
+  background-color: #e5e1da;
+}
+.highscore-rank {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.highscore-score {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.highscore-name {
+  width: 100px;
+  height: 30px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.imgTitle {
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+}
+#leaderboard {
+  background-color: #eec759;
+  color: #f3f3f3;
+  width: 100%;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  justify-content: center;
+}
