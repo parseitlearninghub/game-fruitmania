@@ -54,7 +54,7 @@ hr {
 .x2048,
 .x4096,
 .x8192 {
-  color: black;
+  color: transparent;
   background: transparent;
   display: flex;
   justify-content: center;
